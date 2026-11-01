@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+  <script src="../../lib/d3.v7.min.js"></script>
+  <script>
+    // Create the canvas
+    const svg = d3.select("body")
+      .append("svg")
+      .attr("width", 988)
+      .attr("height", 982);
+
+    // Sky
+    svg.append("rect")
+      .attr("width", 988).attr("height", 600)
+      .attr("fill", "gray");
+
+    // Grass
+    svg.append("rect")
+      .attr("y", 600)
+      .attr("width", 988).attr("height", 382)
+      .attr("fill", "green");
+
+    // Sun
+    svg.append("circle")
+      .attr("cx", 798).attr("cy", 199).attr("r", 80)
+      .attr("fill", "yellow");
+
+    // House body
+    svg.append("rect")
+      .attr("x", 298).attr("y", 399)
+      .attr("width", 400).attr("height", 300)
+      .attr("fill", "#8B4513");
+
+    // Roof (triangle)
+    svg.append("polygon")
+      .attr("points", "298,399 498,199 698,399")
+      .attr("fill", "#CD853F");
+
+    // Windows
+    const windows = svg.append("g")
+      .attr("fill", "lightblue")
+      .attr("stroke", "white")
+      .attr("stroke-width", 4);
+
+    // Left window
+    windows.append("rect")
+      .attr("width", 80).attr("height", 80)
+      .attr("transform", "translate(338, 439)");
+
+    // Right window
+    windows.append("rect")
+      .attr("width", 80).attr("height", 80)
+      .attr("transform", "translate(578, 439)");
+
+    
+    // Door
+    svg.append("rect")
+      .attr("x", 458).attr("y", 539)
+      .attr("width", 80).attr("height", 160)
+      .attr("fill", "sienna");
+
+    // Door knob
+    svg.append("circle")
+      .attr("cx", 518).attr("cy", 619).attr("r", 10)
+      .attr("fill", "black");
+
+    // Tree trunk
+    svg.append("rect")
+      .attr("x", 158).attr("y", 499)
+      .attr("width", 40).attr("height", 200)
+      .attr("fill", "sienna");
+
+    // Tree leaves (three overlapping circles)
+    svg.append("circle").attr("cx", 138).attr("cy", 419).attr("r", 60).attr("fill", "forestgreen");
+    svg.append("circle").attr("cx", 218).attr("cy", 419).attr("r", 60).attr("fill", "forestgreen");
+    svg.append("circle").attr("cx", 178).attr("cy", 459).attr("r", 60).attr("fill", "forestgreen");
+
+    // Winding path (two orange curved lines)
+    svg.append("path")
+      .attr("d", "M 470,699 C 250,750 250,800 330,860 S 440,950 460,982")
+      .attr("fill", "none")
+      .attr("stroke", "orange")
+      .attr("stroke-width", 8);
+
+    svg.append("path")
+      .attr("d", "M 530,699 C 300,740 310,790 400,840 S 530,930 555,982")
+      .attr("fill", "none")
+      .attr("stroke", "orange")
+      .attr("stroke-width", 8);
+
+    // Label
+    svg.append("text")
+      .attr("x", 758).attr("y", 578)
+      .attr("font-size", 48)
+      .attr("font-family", "sans-serif")
+      .text("House");
+
+    // A line
+    svg.append("line")
+      .attr("x1", 50).attr("y1", 700)
+      .attr("x2", 250).attr("y2", 700)
+      .attr("stroke", "black").attr("stroke-width", 4);
+
+    // Cloud
+    svg.append("ellipse")
+      .attr("cx", 300).attr("cy", 100)
+      .attr("rx", 80).attr("ry", 40)
+      .attr("fill", "white");
+
+    // Grass
+    svg.append("polyline")
+      .attr("points", "720,699 750,660 780,699 810,660 840,699 860,660 890,699")
+      .attr("fill", "none")
+      .attr("stroke", "darkgreen")
+      .attr("stroke-width", 4);
+  </script>
+  <img src="img/annotated-house.png" alt="Annotated house">
+  <img src="img/dom.png" alt="DOM">
+</body>
+</html>

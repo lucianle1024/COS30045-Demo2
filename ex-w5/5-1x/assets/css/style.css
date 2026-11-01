@@ -1,0 +1,23 @@
+body { 
+    font-family: sans-serif; 
+    padding: 2rem; 
+    background: #f9f9f9; 
+}
+.bar { 
+    fill: #2b7a78; 
+    transition: fill 0.2s; 
+}
+.bar:hover { 
+    fill: #17252a; 
+}
+.value-label { 
+    font-size: 13px; 
+    font-weight: bold; 
+    fill: #333; 
+    text-anchor: middle; 
+}          
+.axis-label { 
+    font-size: 14px; 
+    font-weight: bold; 
+    fill: #444;     
+}

@@ -1,0 +1,46 @@
+.responsive-svg-container {
+    width: 100%;
+    max-width: 1000px;
+}
+
+@media screen and (max-width: 596px) {
+    .responsive-svg-container {
+        margin-bottom: 20px;
+    }
+}
+
+.axis-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    fill: #5a3e2b;
+}
+
+/* Filter buttons */
+#filters_screen {
+    margin: 20px 0 10px 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    background-color: #f5ebe0;
+    color: #5a3e2b;
+    border: 1px solid #d2691e;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.filter:hover {
+    background-color: #ebd7c1;
+}
+
+.filter.active {
+    background-color: #d2691e;
+    color: #ffffff;
+    font-weight: 500;
+}

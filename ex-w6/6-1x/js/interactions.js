@@ -1,0 +1,106 @@
+const populateFilters = (data) => {
+    // Add filter buttons
+    d3.select("#filters_screen")
+        .selectAll(".filter")
+        .data(filters_screen)
+        .join("button")
+        .attr("class", d => `filter ${d.isActive ? "active" : ""}`)
+        .text(d => d.label)
+        .on("click", (e, d) => {
+            console.log("Clicked filter:", e);
+            console.log("Clicked filter data:", d);
+
+            // If the clicked filter is not already active, update the active state of the filters
+            if (!d.isActive) {
+                // Update internal isActive states
+                filters_screen.forEach(filter => {
+                    filter.isActive = d.id === filter.id;
+                });
+
+                // Update the filter buttons based on which one was clicked
+                d3.selectAll("#filters_screen .filter")
+                    .classed("active", filter => filter.id === d.id);
+
+                // Update the histogram
+                updateHistogram(d.id, data);
+            }
+        });
+
+    const updateHistogram = (filterId, data) => {
+        // 1. Create updatedData and check if id is "all"
+        const updatedData = filterId === "all"
+            ? data
+            : data.filter(tv => tv.screenTech === filterId);
+
+        // 2. Use filtered data to update bins using binGenerator
+        const updatedBins = binGenerator(updatedData);
+
+        // 3. Use updatedBins to transition histogram rectangles
+        d3.selectAll("#histogram rect")
+            .data(updatedBins)
+            .transition()
+            .duration(500)
+            .ease(d3.easeCubicInOut)
+            .attr("y", d => yScale(d.length))
+            .attr("height", d => innerHeight - yScale(d.length));
+    };
+};
+
+// Create tooltip element on scatterplot
+const createTooltip = () => {
+    const tooltip = innerChartS
+        .append("g")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+    // Tooltip background card
+    tooltip
+        .append("rect")
+        .attr("width", tooltipWidth)
+        .attr("height", tooltipHeight)
+        .attr("rx", 3)
+        .attr("ry", 3)
+        .attr("fill", barColor)
+        .attr("fill-opacity", 0.75);
+
+    // Tooltip label
+    tooltip
+        .append("text")
+        .text("NA")
+        .attr("x", tooltipWidth / 2)
+        .attr("y", tooltipHeight / 2 + 2)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "middle")
+        .attr("fill", "white")
+        .style("font-weight", 900);
+};
+
+// Handle mouse hover events on scatterplot circles
+const handleMouseEvents = () => {
+    innerChartS.selectAll("circle")
+        .on("mouseenter", (e, d) => {
+            console.log("Mouse entered circle", d);
+
+            // Set tooltip text to screen size
+            d3.select(".tooltip text")
+                .text(`${d.screenSize}"`);
+
+            // Position tooltip above the circle
+            const cx = e.target.getAttribute("cx");
+            const cy = e.target.getAttribute("cy");
+
+            d3.select(".tooltip")
+                .attr("transform", `translate(${cx - 0.5 * tooltipWidth}, ${cy - 1.5 * tooltipHeight})`)
+                .transition()
+                .duration(200)
+                .style("opacity", 1);
+        })
+        .on("mouseleave", (e, d) => {
+            console.log("Mouse left circle", d);
+
+            // Hide and move tooltip away
+            d3.select(".tooltip")
+                .style("opacity", 0)
+                .attr("transform", "translate(0, 500)");
+        });
+};

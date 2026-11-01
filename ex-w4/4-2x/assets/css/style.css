@@ -1,0 +1,171 @@
+:root {
+  --primary-color: #F4B41A;
+  --text-color: #333333;
+  --bg-color: #FAFAFA;
+  --nav-bg: #FFFFFF;
+  --footer-bg: #222222;
+  --footer-text: #EEEEEE;
+}
+
+/* Global Reset & Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Keeps footer at bottom */
+}
+
+/* Navigation Menu */
+header {
+  background-color: var(--nav-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.logo-link {
+  margin-right: auto;
+}
+
+.logo-link img {
+  height: 50px;
+  width: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover Effect */
+.nav-links a:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Active Page Indicator */
+.nav-links a.active {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Main Content Area */
+main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* FAQ Accordion Styling */
+.faq-section {
+  margin-top: 40px;
+  max-width: 800px;
+}
+
+.faq-item {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background-color: #fff;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #f1f1f1;
+}
+
+/* The +/- indicator */
+.faq-question::after {
+  content: '+';
+  font-size: 1.5rem;
+}
+
+.faq-question.open::after {
+  content: '-';
+}
+
+/* Hidden by default */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  background-color: #fff;
+  padding: 0 15px;
+}
+
+.faq-answer p {
+  margin: 15px 0;
+}
+
+/* Footer Styling */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+}
+
+footer p {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.responsive-svg-container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  max-width: 1200px;
+}
